@@ -1,4 +1,4 @@
-# TestMan [WIP]
+# TestMan
 
 A micro unit test framework for your C programs
 
