@@ -3,15 +3,40 @@
 
 void testman_init();
 
-void testman_int_assert(int result, int expected);
+#define TESTMAN_INT_ASSERT(...)                      \
+    do                                               \
+    {                                                \
+        testman_int_assert(__FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+    } while (0)
 
-void testman_float_assert(float result, float expected);
 
-void testman_long_assert(long result, long expected);
+#define TESTMAN_FLOAT_ASSERT(...)                      \
+    do                                               \
+    {                                                \
+        testman_float_assert(__FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+    } while (0)
 
-void testman_string_assert(char* result, char* expected);
 
-void testman_void_assert(void* result, void* expected);
+#define TESTMAN_LONG_ASSERT(...)                      \
+    do                                               \
+    {                                                \
+        testman_long_assert(__FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+    } while (0)
+
+
+#define TESTMAN_STRING_ASSERT(...)                      \
+    do                                               \
+    {                                                \
+        testman_string_assert(__FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+    } while (0)
+
+
+#define TESTMAN_VOID_ASSERT(...)                      \
+    do                                               \
+    {                                                \
+        testman_void_assert(__FILE__, __LINE__, __func__, ##__VA_ARGS__); \
+    } while (0)
+
 
 void testman_register(void* test);
 

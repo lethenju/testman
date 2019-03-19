@@ -5,7 +5,7 @@ typedef struct testman_functions_to_test_t testman_functions_to_test;
 
 typedef struct testman_functions_to_test_t
 {
-    void* function;                     // the function to test
+    void (*function)();                     // the function to test
     testman_functions_to_test *next;    // the next function to test
 } testman_functions_to_test;
 

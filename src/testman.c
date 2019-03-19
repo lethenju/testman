@@ -15,14 +15,14 @@ void testman_init()
     ctx->function_list = NULL;
 }
 
-void testman_int_assert(int result, int expected)
+void testman_int_assert(char* file, int line, char* func, int result, int expected)
 {
     ctx->nb_tests_total++;
     ctx->nb_tests_currently++;
-    printf("Testing equality of %d and %d\n", result, expected);
+    printf("[%s:%d][%s] Testing equality of %d and %d",file, line, func, result, expected);
     if (result == expected)
     {
-        printf("Ok..\n");
+        printf("   Ok..\n");
         ctx->nb_tests_total_succeeded++;
         ctx->nb_tests_currently_succeeded++;
     }
@@ -32,14 +32,15 @@ void testman_int_assert(int result, int expected)
     }
 }
 
-void testman_float_assert(float result, float expected)
+
+void testman_float_assert(char* file, int line, char* func, float result, float expected)
 {
     ctx->nb_tests_total++;
     ctx->nb_tests_currently++;
-    printf("Testing equality of %f and %f\n", result, expected);
+    printf("[%s:%d][%s] Testing equality of %f and %f",file, line, func, result, expected);
     if (result == expected)
     {
-        printf("Ok..\n");
+        printf("   Ok..\n");
         ctx->nb_tests_total_succeeded++;
         ctx->nb_tests_currently_succeeded++;
     }
@@ -49,14 +50,15 @@ void testman_float_assert(float result, float expected)
     }
 }
 
-void testman_long_assert(long result, long expected)
+
+void testman_long_assert(char* file, int line, char* func, long result, long expected)
 {
     ctx->nb_tests_total++;
     ctx->nb_tests_currently++;
-    printf("Testing equality of %l and %l\n", result, expected);
+    printf("[%s:%d][%s] Testing equality of %ld and %ld",file, line, func, result, expected);
     if (result == expected)
     {
-        printf("Ok..\n");
+        printf("   Ok..\n");
         ctx->nb_tests_total_succeeded++;
         ctx->nb_tests_currently_succeeded++;
     }
@@ -66,14 +68,14 @@ void testman_long_assert(long result, long expected)
     }
 }
 
-void testman_string_assert(char* result, char* expected)
+void testman_string_assert(char* file, int line, char* func, char* result, char* expected)
 {
     ctx->nb_tests_total++;
     ctx->nb_tests_currently++;
-    printf("Testing equality of %s and %s\n", result, expected);
-    if (!strcmp(result,expected))
+    printf("[%s:%d][%s] Testing equality of %s and %s",file, line, func, result, expected);
+    if (!strcmp(result, expected))
     {
-        printf("Ok..\n");
+        printf("   Ok..\n");
         ctx->nb_tests_total_succeeded++;
         ctx->nb_tests_currently_succeeded++;
     }
@@ -83,14 +85,14 @@ void testman_string_assert(char* result, char* expected)
     }
 }
 
-void testman_void_assert(void* result, void* expected)
+void testman_void_assert(char* file, int line, char* func, void* result, void* expected)
 {
     ctx->nb_tests_total++;
     ctx->nb_tests_currently++;
-    printf("Testing equality of %p and %p\n", result, expected);
+    printf("[%s:%d][%s] Testing equality of %p and %p",file, line, func, result, expected);
     if (result == expected)
     {
-        printf("Ok..\n");
+        printf("   Ok..\n");
         ctx->nb_tests_total_succeeded++;
         ctx->nb_tests_currently_succeeded++;
     }
@@ -127,12 +129,12 @@ int testman_launch()
     {
         printf("\nLaunching test function\n");
         (test_func->function)();
-        printf("%d / %d tests ok\n", ctx->nb_tests_currently_succeeded, ctx->nb_tests_currently);
-        printf("TOTAL = %d / %d tests ok\n", ctx->nb_tests_total_succeeded, ctx->nb_tests_total);
+        printf("%d / %d tests\n", ctx->nb_tests_currently_succeeded, ctx->nb_tests_currently);
+        printf("TOTAL = %d / %d tests\n", ctx->nb_tests_total_succeeded, ctx->nb_tests_total);
         ctx->nb_tests_currently = 0;
         ctx->nb_tests_currently_succeeded = 0;
         test_func = test_func->next;
     }
-    printf("\n Test suite ended: results ");
-    printf("TOTAL = %d / %d tests ok\n", ctx->nb_tests_total_succeeded, ctx->nb_tests_total);
+    printf("\n Test suite ended: \n results \n\n ");
+    printf("TOTAL = %d / %d tests\n", ctx->nb_tests_total_succeeded, ctx->nb_tests_total);
 }

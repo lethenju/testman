@@ -5,13 +5,13 @@
 void *multiplier_test()
 {
     int a;
-    for (a = -1024; a <1024; a++)
+    for (a = -10; a <10; a++)
     {
-        testman_int_assert(multiplier(1, a), a);
-        testman_int_assert(multiplier(2, a), 2*a);
-        testman_int_assert(multiplier(0, a), 0);     
-        testman_int_assert(multiplier(a, 1), a);
-        testman_int_assert(multiplier(a, 2), 2*a);
+        TESTMAN_INT_ASSERT(multiplier(1, a), a);
+        TESTMAN_INT_ASSERT(multiplier(2, a), 2*a);
+        TESTMAN_INT_ASSERT(multiplier(0, a), 0);     
+        TESTMAN_INT_ASSERT(multiplier(a, 1), a);
+        TESTMAN_INT_ASSERT(multiplier(a, 2), 2*a);
     }
 }
 
